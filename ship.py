@@ -18,9 +18,26 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
+        # Movement flag 
+        self.moving_right = False
+        self.moving_left = False
+    
+        # Buffers for ship object 
+        self.windowSize = pygame.display.get_window_size()
+        self.rightBuffer = self.windowSize[0] - 32
+        self.leftBuffer = 32
 
+            
+
+    def update(self):
+        """Update the ship's position based on the movement flag"""
+        if self.moving_right and self.rect.centerx <= self.rightBuffer:
+            self.rect.centerx += 3
+        elif self.moving_left and self.rect.centerx >= self.leftBuffer:
+            self.rect.centerx -= 3
 
     def blitme(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
+
 
