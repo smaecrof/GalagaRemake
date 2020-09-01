@@ -6,8 +6,8 @@ import pygame
 import game_functions as gf
 from settings import Settings
 from ship import Ship
+from alien import Alien
 from pygame.sprite import Group
-
 
 def run_game():
     # Initialize pygame, settings, and screen object  
@@ -18,11 +18,17 @@ def run_game():
     pygame.display.set_caption("Galaga")
 
 
-    # Make Ship Object 
+    # Make a Ship
     ship = Ship(ai_settings, screen)
 
-    # Make a group to store bullets 
+
+    # Make a group of bullets and a group of aliens 
     bullets = Group()
+    aliens = Group()
+
+    # Creating an enemy fleet of aliens 
+    gf.create_fleet(ai_settings, screen, ship, aliens)
+
 
     # Start the main loop for the game
     while True:
@@ -33,7 +39,7 @@ def run_game():
         bullets.update()
 
         gf.update_bullets(bullets)
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
                         
 
 
