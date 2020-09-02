@@ -164,20 +164,23 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """Respond to ship being hit by alien"""
-    # Decrement ships_left 
-    stats.ships_left -= 1    
+    if stats.ships_left > 0:
+        # Decrement ships_left 
+        stats.ships_left -= 1    
     
-    # Empty the list of aliens and bullets 
-    aliens.empty()
-    bullets.empty()
+        # Empty the list of aliens and bullets 
+        aliens.empty()
+        bullets.empty()
 
-    # Create a new fleet and center the ship
-    create_fleet(ai_settings, screen, ship, aliens)
-    ship.center_ship()
+        # Create a new fleet and center the ship
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
-    # Pause System
-    sleep(0.5)
+        # Pause System
+        sleep(0.5)
 
+    else:
+        stats.game_active = False
     
 def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
     """Check if any aliens have reached the bottom of the screen."""
