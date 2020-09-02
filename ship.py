@@ -19,10 +19,13 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
 
+        # Store a decimal value for a ship's center 
+        self.center = float(self.rect.centerx)
+
         # Movement flag 
         self.moving_right = False
         self.moving_left = False
-    
+         
         # Buffers for ship object 
         self.windowSize = pygame.display.get_window_size()
         self.rightBuffer = self.windowSize[0] - 32
@@ -37,8 +40,13 @@ class Ship():
         elif self.moving_left and self.rect.centerx >= self.leftBuffer:
             self.rect.centerx -= self.ai_settings.ship_speed_factor
 
+
+
     def blitme(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
 
 
+    def center_ship(self):
+        """Center the ship after a collision"""
+        self.center = self.screen_rect.centerx
