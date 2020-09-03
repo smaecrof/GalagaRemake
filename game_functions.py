@@ -81,7 +81,7 @@ def check_keyup_events(event, ship):
     
 
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Update the position of bullets and get rid of old bullets"""
     # Update bullet positions 
     bullets.update()
@@ -91,13 +91,17 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
     
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
      
 
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Check for collisions between bullets and aliens"""
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    
+    if collisions:
+        stats.score += ai_settings.alien_points
+        sb.prep_score()
 
     if len(aliens) == 0:
         # Destroy existing bullets and create new alien fleet, increase speed factor
@@ -109,7 +113,7 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
 
 
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen"""
 
     # Redraw the screen 
@@ -125,6 +129,9 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button
 
     # Draw Alien 
     aliens.draw(screen)
+
+    # Draw Scoreboard
+    sb.show_score()
 
     # Draw the play button if the game is inactive
     if not stats.game_active:

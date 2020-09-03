@@ -11,7 +11,7 @@ class Settings():
         # Screen Settings 
         self.screen_width = 1000
         self.screen_height = 600
-        self.bg_color = (0,0,0)
+        self.bg_color = (15,15,15)
         self.bg_image = pygame.image.load("images/space_bg.jpeg")
 
         # Ship settings
@@ -42,11 +42,16 @@ class Settings():
         # fleet_direction of 1 represents right; -1 represents left 
         self.fleet_direction = 1
 
-    
+        # Scoring 
+        self.alien_points = 50 
 
     def increase_speed(self):
         """Increase speed settings."""
-        self.ship_speed_factor *= self.speedup_scale
-        self.bullet_speed_factor *= self.speedup_scale
-        self.alien_speed_factor *= self.speedup_scale
+        if self.ship_speed_factor < 8:
+            self.ship_speed_factor *= self.speedup_scale
+        
+        if self.bullet_speed_factor < 8:
+            self.bullet_speed_factor *= self.speedup_scale
+
+        self.fleet_drop_speed *= self.speedup_scale
 
