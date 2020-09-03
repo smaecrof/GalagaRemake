@@ -1,4 +1,4 @@
-# Author: Spencer Mae-Croft 
+# Author: Spencer Mae-Croft # Date: 08/31/2020 
 # Date: 08/31/2020
 
 import sys 
@@ -38,7 +38,8 @@ def run_game():
     # Start the main loop for the game
     while True:
         # Checking for keyboard events  
-        gf.check_events(ai_settings, screen, ship, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
+
         ship.update()
         bullets.update()
 
