@@ -1,5 +1,5 @@
 # Author: Spencer Mae-Croft
-# Date: 09/01/2020
+# Date: 10/01/2020
 
 import sys
 import pygame
@@ -72,11 +72,12 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
         ai_settings.fleet_drop_speed += 1
 
 
-def update_screen(ai_settings, screen, ship, aliens, bullets):
+def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen"""
 
     # Redraw the screen 
-    screen.fill(ai_settings.bg_color)
+    #screen.fill(ai_settings.bg_color)
+    screen.blit(ai_settings.bg_image, (0,0))
 
     # Redraw all bullets behind ship and aliens 
     for bullet in bullets.sprites():
@@ -87,6 +88,10 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
 
     # Draw Alien 
     aliens.draw(screen)
+
+    # Draw the play button if the game is inactive
+    if not stats.game_active:
+        play_button.draw_button()
 
     # Make the most recently drawn screen visible
     pygame.display.flip()

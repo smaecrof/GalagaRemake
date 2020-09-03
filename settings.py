@@ -1,6 +1,8 @@
 # Author: Spencer Mae-Croft
 # Date: 09/01/2020
 
+import pygame
+
 class Settings():
     """A class to store all settings for Galaga"""
 
@@ -10,6 +12,7 @@ class Settings():
         self.screen_width = 1000
         self.screen_height = 600
         self.bg_color = (0,0,0)
+        self.bg_image = pygame.image.load("images/space_bg.jpeg")
 
         # Ship settings
         self.ship_speed_factor = 5
@@ -19,7 +22,7 @@ class Settings():
         self.bullet_speed_factor = 6
         self.bullet_width = 3
         self.bullet_height = 10
-        self.bullet_color = (60,60,60)
+        self.bullet_color = (252,40,3)
         self.bullets_allowed = 3
 
         # Alien Settings 
