@@ -37,6 +37,7 @@ def run_game():
 
     # Start the main loop for the game
     while True:
+        
         # Checking for keyboard events  
         gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 
