@@ -222,7 +222,6 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         # Empty the list of aliens and bullets
         aliens.empty()
         bullets.empty()
-<<<<<<< HEAD
 
         # Create a new fleet and center the ship
         create_fleet(ai_settings, screen, ship, aliens)
@@ -230,7 +229,6 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
         # Pause System
         sleep(0.5)
-=======
 
         # Create a new fleet and center the ship
         create_fleet(ai_settings, screen, ship, aliens)
@@ -243,14 +241,6 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         stats.game_active = False
         pygame.mouse.set_visible(True)
 
->>>>>>> nGraphics
-
-<<<<<<< HEAD
-    else:
-        stats.game_active = False
-    
-=======
->>>>>>> nGraphics
 def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
     """Check if any aliens have reached the bottom of the screen."""
     screen_rect = screen.get_rect()

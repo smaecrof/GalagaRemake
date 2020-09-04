@@ -13,18 +13,12 @@ class GameStats():
         """ Initialize game statistics"""
         self.ai_settings = ai_settings
         self.reset_stats()
-<<<<<<< HEAD
         
-<<<<<<< HEAD
         # Start Alien Invasion in an active state
         self.game_active = True
-=======
-=======
 
->>>>>>> nGraphics
         # Start game in an inactive state
         self.game_active = False
->>>>>>> nGraphics
 
     def reset_stats(self):
         """Initialize statistics that can change during the game."""
