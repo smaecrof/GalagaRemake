@@ -14,6 +14,9 @@ class GameStats():
         self.ai_settings = ai_settings
         self.reset_stats()
         
+        # High Score
+        self.high_score = 0
+
         # Start Alien Invasion in an active state
         self.game_active = True
 

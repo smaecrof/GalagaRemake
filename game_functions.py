@@ -83,6 +83,7 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, scoreboard,
     if collisions:
         stats.score += ai_settings.alien_points
         scoreboard.prep_score()
+        check_high_score(stats, scoreboard)
 
     if len(aliens) == 0:
         # Destroy existing bullets and create new alien fleet,
@@ -109,6 +110,13 @@ def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
             # Treat as if the ship got hit
             ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
             break
+
+def check_high_score(stats, scoreboard):
+    """Check to see if there's a new high score"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        scoreboard.prep_high_score()
+
 
 def update_bullets(ai_settings, screen, stats, scoreboard, ship, aliens, bullets):
     """Update the position of bullets and get rid of old bullets"""
