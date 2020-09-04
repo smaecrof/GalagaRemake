@@ -1,3 +1,7 @@
+"""
+    This is a class to store the settings for a Bullet object
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 09/01/2020
 
@@ -21,18 +25,18 @@ class Bullet(Sprite):
         self.rect.top = ship.rect.top
 
         # Store the bullet's position as a decimal value
-        self.y = float(self.rect.y)
+        self.y_coord = float(self.rect.y)
 
         self.color = ai_settings.bullet_color
         self.speed_factor = ai_settings.bullet_speed_factor
 
     def update(self):
         """Move the bullet up the screen"""
-        if(self.y > -15):
-            self.y -= self.speed_factor
+        if self.y_coord > -15:
+            self.y_coord -= self.speed_factor
 
             # Update rect position
-            self.rect.y = self.y
+            self.rect.y = self.y_coord
 
     def draw_bullet(self):
         """Draw the bullet to the screen"""

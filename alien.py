@@ -1,3 +1,8 @@
+"""
+   This is the alien class which stores the information and
+   functionality needed to draw an alien on the screen
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 09/01/2020
 
@@ -22,14 +27,14 @@ class Alien(Sprite):
         self.rect.y = self.rect.height
 
         # Store the alien's exact location/position
-        self.x = float(self.rect.x)
+        self.x_coord = float(self.rect.x)
 
     def update(self, stats):
         """Move the alien right or left."""
         if stats.game_active:
-            self.x += (self.ai_settings.alien_speed_factor *
+            self.x_coord += (self.ai_settings.alien_speed_factor *
                        self.ai_settings.fleet_direction)
-            self.rect.x = self.x
+            self.rect.x = self.x_coord
 
     def blitme(self):
         """Draw the alien at its current location"""
@@ -39,7 +44,4 @@ class Alien(Sprite):
         """Return True if alien is at edge of screen."""
         screen_rect = self.screen.get_rect()
 
-        if self.rect.right >= screen_rect.right:
-            return True
-        elif self.rect.left <= 0:
-            return True
+        return self.rect.right >= screen_rect.right or self.rect.left <= 0

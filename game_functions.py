@@ -1,12 +1,15 @@
+"""
+    Main functionality class for the application
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 10/01/2020
 
 import sys
+from time import sleep
 import pygame
 from bullet import Bullet
 from alien import Alien
-from time import sleep
-
 
 def check_events(ai_settings, screen, stats,
                  play_button, ship, aliens,  bullets):
@@ -81,7 +84,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, scoreboard, ship, aliens, bullets):
     """Update the position of bullets and get rid of old bullets"""
     # Update bullet positions
     bullets.update()
@@ -92,17 +95,17 @@ def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
             bullets.remove(bullet)
 
     check_bullet_alien_collisions(ai_settings, screen, stats,
-                                  sb, ship, aliens, bullets)
+                                  scoreboard, ship, aliens, bullets)
 
 
-def check_bullet_alien_collisions(ai_settings, screen, stats, sb,
+def check_bullet_alien_collisions(ai_settings, screen, stats, scoreboard,
                                   ship, aliens, bullets):
     """Check for collisions between bullets and aliens"""
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if collisions:
         stats.score += ai_settings.alien_points
-        sb.prep_score()
+        scoreboard.prep_score()
 
     if len(aliens) == 0:
         # Destroy existing bullets and create new alien fleet,
@@ -114,7 +117,7 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb,
         ai_settings.fleet_drop_speed += 1
 
 
-def update_screen(ai_settings, screen, stats, sb,
+def update_screen(ai_settings, screen, stats, scoreboard,
                   ship, aliens, bullets, play_button):
     """Update images on the screen and flip to the new screen"""
     screen.blit(ai_settings.bg_image, (0, 0))
@@ -130,7 +133,7 @@ def update_screen(ai_settings, screen, stats, sb,
     aliens.draw(screen)
 
     # Draw Scoreboard
-    sb.show_score()
+    scoreboard.show_score()
 
     # Draw the play button if the game is inactive
     if not stats.game_active:
@@ -165,8 +168,8 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     """Create an alien and place it in the row"""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
-    alien.x = alien_width + 2 * alien_width * alien_number
-    alien.rect.x = alien.x
+    alien.x_coord = alien_width + 2 * alien_width * alien_number
+    alien.rect.x = alien.x_coord
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
 

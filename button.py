@@ -1,3 +1,7 @@
+"""
+    This file stores the internals of the 'Play' Button
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 09/03/2020
 
@@ -5,7 +9,8 @@ import pygame
 
 
 class Button():
-    def __init__(self, ai_settings, screen, msg):
+    """Stores necessary button info"""
+    def __init__(self, screen, msg):
         """Initialize the button attributes"""
         self.screen = screen
         self.screen_rect = screen.get_rect()

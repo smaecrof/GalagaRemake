@@ -1,3 +1,6 @@
+"""
+    Creates a scoreboard object to be displayed on screen
+"""
 # Author: Spencer Mae-Croft
 # Date: 09/03/2020
 

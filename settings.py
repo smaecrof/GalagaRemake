@@ -1,3 +1,9 @@
+"""
+    Stores easy to access game settings. Pylint would like me to end this settings file
+    so that there are less instance variables. Not sure if I'll do this yet but I see where
+    the point could be made that this file won't scale well with the game.
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 09/01/2020
 

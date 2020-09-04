@@ -1,3 +1,8 @@
+"""
+    Stores functionality to store stats and also to reset score after game
+    has ended
+"""
+
 # Author: Spencer Mae-Croft
 # Date: 09/02/2020
 

@@ -1,19 +1,23 @@
+"""
+    Beginning of the game, main game loop
+"""
+
 # Author: Spencer Mae-Croft # Date: 08/31/2020
 # Date: 08/31/2020
 
-import sys
 import pygame
+from pygame.sprite import Group
 import game_functions as gf
 from settings import Settings
 from ship import Ship
-from alien import Alien
-from pygame.sprite import Group
 from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
 
 
 def run_game():
+    """The main program loop, creation of screen elements"""
+
     # Initialize pygame, settings, and screen object
     pygame.init()
     ai_settings = Settings()
@@ -22,7 +26,7 @@ def run_game():
     pygame.display.set_caption("Galaga")
 
     # Make a Play button
-    play_button = Button(ai_settings, screen, "Play")
+    play_button = Button(screen, "Play")
 
     # Create an instance to store game statistics
     stats = GameStats(ai_settings)
@@ -45,17 +49,17 @@ def run_game():
                         play_button, ship, aliens, bullets)
 
         # Create scoreboard
-        sb = Scoreboard(ai_settings, screen, stats)
+        scoreboard = Scoreboard(ai_settings, screen, stats)
 
         # Update group objects
         ship.update()
         bullets.update()
 
         gf.update_bullets(ai_settings, screen, stats,
-                          sb, ship, aliens, bullets)
+                          scoreboard, ship, aliens, bullets)
         gf.update_aliens(ai_settings, stats, screen,  ship, aliens, bullets)
         gf.update_screen(ai_settings, screen, stats,
-                         sb, ship, aliens, bullets, play_button)
+                         scoreboard, ship, aliens, bullets, play_button)
 
 
 run_game()
