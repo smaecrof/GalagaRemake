@@ -6,13 +6,16 @@
 # Date: 09/01/2020
 
 import pygame
+from pygame.sprite import Sprite
 
 
-class Ship():
+class Ship(Sprite):
     """Creates a ship object"""
 
     def __init__(self, ai_settings,  screen):
         """Initialize a ship and set its starting position"""
+        super(Ship, self).__init__()
+
         self.screen = screen
         self.ai_settings = ai_settings
 
